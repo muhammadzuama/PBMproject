@@ -2,9 +2,9 @@ class Artikel {
   String? title;
   String? penulis;
   String? urlImage;
-  String? date;
+  String? conten;
 
-  Artikel(this.title, this.penulis, this.date, this.urlImage);
+  Artikel(this.title, this.penulis, this.conten, this.urlImage);
 
   // ignore: non_constant_identifier_names
   static List<Artikel> DataArtikel = [

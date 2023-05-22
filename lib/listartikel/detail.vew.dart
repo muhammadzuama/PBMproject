@@ -26,7 +26,7 @@ class _DetailArtikelState extends State<DetailArtikel> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0.0,
-            iconTheme: const IconThemeData(color: Colors.amberAccent),
+            iconTheme: const IconThemeData(color: Colors.brown),
           ),
           body: Padding(
             padding: const EdgeInsets.all(18.0),
@@ -63,7 +63,7 @@ class _DetailArtikelState extends State<DetailArtikel> {
                 const SizedBox(
                   height: 30.0,
                 ),
-                Text(widget.data.date!)
+                Text(widget.data.conten!)
               ],
             ),
           ),

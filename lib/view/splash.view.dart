@@ -18,15 +18,11 @@ class SplashView extends StatelessWidget {
     return Scaffold(
         backgroundColor: GlobalColors.splashscreen,
         body: const Center(
-          child: Text(
-            "hello kamu",
-            style: TextStyle(fontSize: 100),
+          child: Image(
+            image: AssetImage("images/LOGO.png"),
+            width: 170,
+            height: 170,
           ),
-          // child: Image(
-          //   image: AssetImage("images/LOGO.png"),
-          //   width: 170,
-          //   height: 170,
-          // ),
         ));
   }
 }

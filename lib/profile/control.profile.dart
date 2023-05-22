@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:server_coba/utils/global.color.dart';
@@ -10,9 +12,17 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  final ImagePicker picker = ImagePicker();
-  void takePhoto(image) async {
-    final ImagePicker picker = ImagePicker();
+  File? _image;
+
+  Future<void> getImage(ImageSource camera) async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image == null) return;
+
+    final imageTemporary = File(image.path);
+
+    setState(() {
+      _image = imageTemporary;
+    });
   }
 
   @override
@@ -30,7 +40,7 @@ class _EditProfileState extends State<EditProfile> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 15, top: 20, right: 15),
+        padding: const EdgeInsets.only(left: 15, top: 20, right: 15),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -41,52 +51,56 @@ class _EditProfileState extends State<EditProfile> {
                 child: Stack(
                   children: [
                     Container(
-                        width: 130,
-                        height: 130,
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 4, color: Colors.white),
-                            boxShadow: [
-                              BoxShadow(
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  color: Colors.black.withOpacity(0.1))
-                            ],
-                            shape: BoxShape.circle,
-                            image: const DecorationImage(
-                                fit: BoxFit.fill,
-                                image: NetworkImage(
-                                    'https://fajar.co.id/wp-content/uploads/2023/03/Screenshot_2023_0330_120521.jpg')))),
+                      width: 130,
+                      height: 130,
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 4, color: Colors.white),
+                        boxShadow: [
+                          BoxShadow(
+                            spreadRadius: 2,
+                            blurRadius: 10,
+                            color: Colors.black.withOpacity(0.1),
+                          ),
+                        ],
+                        shape: BoxShape.circle,
+                        image: _image != null
+                            ? DecorationImage(
+                                image: FileImage(_image!), fit: BoxFit.fill)
+                            : null,
+                      ),
+                    ),
                     Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: InkWell(
-                          onTap: () {
-                            // Aksi yang ingin Anda lakukan saat ikon kamera diklik
-                            print('Ikon kamera diklik!');
-                          },
-                          child: Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: GlobalColors.button,
-                            ),
-                            child: Icon(
+                      bottom: 0,
+                      right: 0,
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          width: 35,
+                          height: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: GlobalColors.button,
+                          ),
+                          child: IconButton(
+                            onPressed: () => getImage(ImageSource.camera),
+                            icon: const Icon(
                               Icons.camera_alt,
                               color: Colors.white,
                               size: 20,
                             ),
                           ),
-                        )),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               buildTextField("Username", "alamin", false),
               buildTextField("Email", "alaminmzuama@gamil.com", false),
               buildTextField("No HP", "081999999", false),
               buildTextField("Password", "081999999", false),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -115,7 +129,7 @@ class _EditProfileState extends State<EditProfile> {
   Widget buildTextField(
       String labelText, String placeholder, bool isPasswordTextField) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.only(bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -145,7 +159,8 @@ class _EditProfileState extends State<EditProfile> {
                 suffixIcon: isPasswordTextField
                     ? IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.remove_red_eye, color: Colors.grey),
+                        icon: const Icon(Icons.remove_red_eye,
+                            color: Colors.grey),
                       )
                     : null,
                 contentPadding: const EdgeInsets.only(bottom: 5),

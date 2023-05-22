@@ -4,7 +4,6 @@ import 'package:server_coba/utils/global.color.dart';
 import 'package:server_coba/view/cari.view.dart';
 import 'package:server_coba/view/favorit.view.dart';
 import 'package:server_coba/view/home.view.dart';
-import 'package:server_coba/view/profile.view.dart';
 
 /// Flutter code sample for [BottomNavigationBar].
 
