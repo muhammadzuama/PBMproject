@@ -1,11 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:server_coba/utils/global.color.dart';
 
 class EditProfile extends StatefulWidget {
-  const EditProfile({super.key});
+  const EditProfile({Key? key});
 
   @override
   State<EditProfile> createState() => _EditProfileState();
@@ -13,9 +13,18 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   File? _image;
+  late FirebaseAuth _firebaseAuth;
+  User? _currentUser;
+
+  @override
+  void initState() {
+    _firebaseAuth = FirebaseAuth.instance;
+    _currentUser = _firebaseAuth.currentUser;
+    super.initState();
+  }
 
   Future<void> getImage(ImageSource camera) async {
-    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    final image = await ImagePicker().pickImage(source: camera);
     if (image == null) return;
 
     final imageTemporary = File(image.path);
@@ -36,7 +45,10 @@ class _EditProfileState extends State<EditProfile> {
             Icons.logout_rounded,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            var _googleAuth;
+            _googleAuth.logout();
+          },
         ),
       ),
       body: Container(
@@ -66,7 +78,13 @@ class _EditProfileState extends State<EditProfile> {
                         image: _image != null
                             ? DecorationImage(
                                 image: FileImage(_image!), fit: BoxFit.fill)
-                            : null,
+                            : _currentUser != null &&
+                                    _currentUser!.photoURL != null
+                                ? DecorationImage(
+                                    image:
+                                        NetworkImage(_currentUser!.photoURL!),
+                                    fit: BoxFit.fill)
+                                : null,
                       ),
                     ),
                     Positioned(
@@ -96,28 +114,29 @@ class _EditProfileState extends State<EditProfile> {
                 ),
               ),
               const SizedBox(height: 30),
-              buildTextField("Username", "alamin", false),
-              buildTextField("Email", "alaminmzuama@gamil.com", false),
-              buildTextField("No HP", "081999999", false),
-              buildTextField("Password", "081999999", false),
+              buildTextField(
+                  "Username", _currentUser?.displayName ?? "", false),
+              buildTextField("Email", _currentUser?.email ?? "", false),
+              buildTextField(
+                  "No HP", "", false), // Tambahkan fungsi ini sesuai kebutuhan
+              buildTextField("Password", "",
+                  true), // Tambahkan fungsi ini sesuai kebutuhan
               const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 15),
-                        backgroundColor: GlobalColors.button),
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => const DashboardView()),
-                      // );
-                    },
-                    child: const Text(
-                      "Save",
-                    )),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 15),
+                    backgroundColor: GlobalColors.button,
+                  ),
+                  onPressed: () {
+                    // Tambahkan logika disini untuk menyimpan profil
+                  },
+                  child: const Text(
+                    "Save",
+                  ),
+                ),
               ),
             ],
           ),
@@ -134,8 +153,7 @@ class _EditProfileState extends State<EditProfile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: const EdgeInsets.only(
-                bottom: 8), // Atur jarak antara label dan retangle di sini
+            margin: const EdgeInsets.only(bottom: 8),
             child: Text(
               labelText,
               style: const TextStyle(
@@ -145,15 +163,13 @@ class _EditProfileState extends State<EditProfile> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 1), // Atur jarak padding horizontal di sini
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.grey[200],
             ),
             child: TextField(
-              obscureText: isPasswordTextField ? true : false,
+              obscureText: isPasswordTextField,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 suffixIcon: isPasswordTextField

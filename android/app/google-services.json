@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "572552147207",
+    "project_id": "findfeapps",
+    "storage_bucket": "findfeapps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572552147207:android:40bb2d73384273e11ad5a2",
+        "android_client_info": {
+          "package_name": "com.example.server_coba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572552147207-6q50fb7qglck3aponluo8sfrgil4041o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.server_coba",
+            "certificate_hash": "9f03f579fb07a2d9405d437fc61939d4a68c361c"
+          }
+        },
+        {
+          "client_id": "572552147207-no927bm0sjdjdv2idk5rjsfv7h8arro0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjXnaj2rVKjLygB7GQKUS7yruF4ye18hg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572552147207-no927bm0sjdjdv2idk5rjsfv7h8arro0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

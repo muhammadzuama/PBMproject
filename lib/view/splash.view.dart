@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:server_coba/utils/global.color.dart';
-import '../nav/nav.vew.dart';
+import 'package:server_coba/view/login.view.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -11,8 +11,7 @@ class SplashView extends StatelessWidget {
     Timer(const Duration(seconds: 2), () {
       Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) => const BottomNavigationBarExample()),
+        MaterialPageRoute(builder: (context) => const LoginView()),
       );
     });
     return Scaffold(

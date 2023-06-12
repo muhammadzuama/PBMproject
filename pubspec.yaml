@@ -38,6 +38,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   hexcolor: ^3.0.1
   image_picker: ^0.8.7+5
+  firebase_core: ^2.13.0
+  cloud_firestore: ^4.7.1
+  firebase_auth: ^4.6.1
+  google_sign_in: ^6.1.0
+  provider: ^6.0.5
+  http: ^1.0.0
+  # google_maps_flutter: ^2.3.0
+  android_intent_plus: ^4.0.1
 
 dev_dependencies:
   flutter_test:
