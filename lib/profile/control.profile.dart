@@ -117,8 +117,8 @@ class _EditProfileState extends State<EditProfile> {
               buildTextField(
                   "Username", _currentUser?.displayName ?? "", false),
               buildTextField("Email", _currentUser?.email ?? "", false),
-              buildTextField(
-                  "No HP", "", false), // Tambahkan fungsi ini sesuai kebutuhan
+              buildTextField("No HP", _currentUser?.phoneNumber ?? "",
+                  false), // Tambahkan fungsi ini sesuai kebutuhan
               buildTextField("Password", "",
                   true), // Tambahkan fungsi ini sesuai kebutuhan
               const SizedBox(height: 20),

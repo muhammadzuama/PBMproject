@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:server_coba/crud/viewKopi.dart';
 import 'package:server_coba/listartikel/data.artikel.dart';
 import 'package:server_coba/listartikel/list.artikel.dart';
+import 'package:server_coba/mitra/mitra.view.dart';
 import 'package:server_coba/utils/global.color.dart';
 
 import '../profile/control.profile.dart';
-import 'cari.view.dart';
 
 class Homepage extends StatefulWidget {
   final UserCredential userCredential;
@@ -116,7 +116,7 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
           // Add more pages as needed
-          CariMitra(), // Placeholder for Search page
+          ViewMitra(), // Placeholder for Search page
           ViewKopi(), // Placeholder for Favorite page
           EditProfile(), // Placeholder for Profile page
         ],
