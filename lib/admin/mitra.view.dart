@@ -1,20 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:server_coba/location/user.location.dart';
-import 'package:server_coba/main.dart';
 import 'package:server_coba/mitra/add.mitra.dart';
 import 'package:server_coba/mitra/edit.mitra.dart';
 import '../auth/mitra.service.dart';
-import '../map/map.dart';
 
-class ViewMitra extends StatefulWidget {
-  const ViewMitra({Key? key}) : super(key: key);
+class ViewMitraAdmin extends StatefulWidget {
+  const ViewMitraAdmin({Key? key}) : super(key: key);
 
   @override
-  State<ViewMitra> createState() => _ViewMitraState();
+  State<ViewMitraAdmin> createState() => _ViewMitraState();
 }
 
-class _ViewMitraState extends State<ViewMitra> {
+class _ViewMitraState extends State<ViewMitraAdmin> {
   TextEditingController searchController = TextEditingController();
   List<QueryDocumentSnapshot> mitraList = [];
 
@@ -49,12 +47,20 @@ class _ViewMitraState extends State<ViewMitra> {
     fetchMitraData();
   }
 
+  // Future<void> viewUserLocation() async {
+  //   // Get user's location
+  //   var userLocation = await LocationService.getUserLocation();
+
+  //   // Do something with the user's location
+  //   print('User Location: $userLocation');
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Row(
+        title: Row(
           children: [
             Icon(Icons.store),
             SizedBox(width: 8.0),
@@ -63,7 +69,7 @@ class _ViewMitraState extends State<ViewMitra> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: Icon(Icons.search),
             onPressed: () {
               String searchText = searchController.text;
               // Do something with the inputted text
@@ -75,31 +81,21 @@ class _ViewMitraState extends State<ViewMitra> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            child: const Icon(Icons.add),
+            child: Icon(Icons.add),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => const AddMitra()),
+                MaterialPageRoute(builder: (_) => AddMitra()),
               );
             },
           ),
-          const SizedBox(height: 16.0),
+          SizedBox(height: 16.0),
           FloatingActionButton(
-            child: const Icon(Icons.location_on),
+            child: Icon(Icons.location_on),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => const MyLocation()),
-              );
-            },
-          ),
-          const SizedBox(height: 16.0),
-          FloatingActionButton(
-            child: const Icon(Icons.maps_ugc_rounded),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const MyMaps()),
+                MaterialPageRoute(builder: (_) => MyLocation()),
               );
             },
           ),
@@ -114,7 +110,6 @@ class _ViewMitraState extends State<ViewMitra> {
             String namaMitra = mitraData['nama_toko'].toString();
             String alamatMitra = mitraData['alamat'].toString();
             String jamBuka = mitraData['jam_buka'].toString();
-            String product = mitraData['product'].toString();
             String mitraId = mitraList[index].id;
 
             return GestureDetector(
@@ -134,6 +129,7 @@ class _ViewMitraState extends State<ViewMitra> {
                       location: mitraData['location'] as GeoPoint,
                       latitude: '',
                       longitude: '',
+                      waktu: '',
                     ),
                   ),
                 );
@@ -155,48 +151,37 @@ class _ViewMitraState extends State<ViewMitra> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    const SizedBox(width: 8.0),
+                    SizedBox(width: 8.0),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             namaMitra,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16.0,
                             ),
                           ),
-                          const SizedBox(height: 4.0),
+                          SizedBox(height: 4.0),
                           Row(
                             children: [
-                              const Icon(Icons.location_on, size: 14.0),
-                              const SizedBox(width: 2.0),
+                              Icon(Icons.location_on, size: 14.0),
+                              SizedBox(width: 2.0),
                               Text(
                                 alamatMitra,
-                                style: const TextStyle(fontSize: 14.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 4.0),
+                          SizedBox(height: 4.0),
                           Row(
                             children: [
-                              const Icon(Icons.access_time, size: 14.0),
-                              const SizedBox(width: 2.0),
+                              Icon(Icons.access_time, size: 14.0),
+                              SizedBox(width: 2.0),
                               Text(
                                 jamBuka,
-                                style: const TextStyle(fontSize: 14.0),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 4.0),
-                          Row(
-                            children: [
-                              const Icon(Icons.coffee_maker, size: 14.0),
-                              const SizedBox(width: 2.0),
-                              Text(
-                                product,
-                                style: const TextStyle(fontSize: 14.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ],
                           ),
@@ -204,25 +189,25 @@ class _ViewMitraState extends State<ViewMitra> {
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.delete),
+                      icon: Icon(Icons.delete),
                       onPressed: () {
                         showDialog(
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: const Text('Hapus Mitra'),
-                              content: const Text(
+                              title: Text('Hapus Mitra'),
+                              content: Text(
                                 'Apakah Anda yakin ingin menghapus mitra ini?',
                               ),
                               actions: [
                                 TextButton(
-                                  child: const Text('Batal'),
+                                  child: Text('Batal'),
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
                                 ),
                                 TextButton(
-                                  child: const Text('Hapus'),
+                                  child: Text('Hapus'),
                                   onPressed: () {
                                     deleteMitra(mitraId);
                                     Navigator.pop(context);
