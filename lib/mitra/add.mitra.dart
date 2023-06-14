@@ -13,13 +13,13 @@ class AddMitra extends StatefulWidget {
 
 class _AddMitraState extends State<AddMitra> {
   File? _image;
-  TextEditingController _namaController = TextEditingController();
-  TextEditingController _alamatController = TextEditingController();
-  TextEditingController _jamBukaController = TextEditingController();
-  TextEditingController _produkController = TextEditingController();
-  TextEditingController _deskripsiController = TextEditingController();
-  TextEditingController _lokasiController = TextEditingController();
-  TextEditingController _noHpController = TextEditingController();
+  final TextEditingController _namaController = TextEditingController();
+  final TextEditingController _alamatController = TextEditingController();
+  final TextEditingController _jamBukaController = TextEditingController();
+  final TextEditingController _produkController = TextEditingController();
+  final TextEditingController _deskripsiController = TextEditingController();
+  final TextEditingController _lokasiController = TextEditingController();
+  final TextEditingController _noHpController = TextEditingController();
 
   Future<void> _pickImage(ImageSource source) async {
     final pickedImage = await ImagePicker().pickImage(source: source);
@@ -56,7 +56,7 @@ class _AddMitraState extends State<AddMitra> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Mitra'),
+        title: const Text('Add Mitra'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -66,68 +66,68 @@ class _AddMitraState extends State<AddMitra> {
             children: [
               TextField(
                 controller: _namaController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Nama Mitra',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: _alamatController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Alamat Mitra',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: _jamBukaController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Jam Buka',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: _produkController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Produk yang Dijual',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: _deskripsiController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Deskripsi',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: _lokasiController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Lokasi (Latitude, Longitude)',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: _noHpController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Nomor Telepon',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
                     onPressed: () => _pickImage(ImageSource.camera),
-                    child: Text('Ambil Foto'),
+                    child: const Text('Ambil Foto'),
                   ),
                   ElevatedButton(
                     onPressed: () => _pickImageFromGallery(),
-                    child: Text('Ambil dari Galeri'),
+                    child: const Text('Ambil dari Galeri'),
                   ),
                 ],
               ),
               if (_image != null) ...[
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.file(
@@ -138,7 +138,7 @@ class _AddMitraState extends State<AddMitra> {
                   ),
                 ),
               ],
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () async {
                   String namaMitra = _namaController.text;
@@ -167,7 +167,7 @@ class _AddMitraState extends State<AddMitra> {
                     );
 
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text("Data berhasil ditambahkan"),
                         backgroundColor: Colors.green,
                       ),
@@ -176,14 +176,14 @@ class _AddMitraState extends State<AddMitra> {
                   } else {
                     // Handling jika gambar belum dipilih
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text("Pilih gambar terlebih dahulu"),
                         backgroundColor: Colors.red,
                       ),
                     );
                   }
                 },
-                child: Text('Simpan'),
+                child: const Text('Simpan'),
               ),
             ],
           ),

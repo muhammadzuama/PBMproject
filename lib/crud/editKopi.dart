@@ -6,7 +6,13 @@ class EditPage extends StatefulWidget {
   final String? nama_kopi;
   final String? jumlah;
 
-  const EditPage({Key? key, this.kopiId, this.nama_kopi, this.jumlah})
+  const EditPage(
+      {Key? key,
+      this.kopiId,
+      this.nama_kopi,
+      this.jumlah,
+      required String namaKopi,
+      required String gambar})
       : super(key: key);
 
   @override
@@ -32,9 +38,9 @@ class _EditPageState extends State<EditPage> {
   Future<void> _fetchDataById(String kopiId) async {
     try {
       final data = await KopiService.getDataById(kopiId);
-      if (data != null && data.exists) {
+      if (data.exists) {
         setState(() {
-          _kopiData = data.data();
+          _kopiData = data.data() as Map<String, dynamic>?;
           _controllerNamaKopi.text = _kopiData?['nama_kopi'] ?? '';
           _controllerJumlah.text = _kopiData?['jumlah'] ?? '';
         });

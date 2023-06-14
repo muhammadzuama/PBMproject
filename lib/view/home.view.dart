@@ -34,12 +34,14 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    final Color iconColor = Color.fromARGB(255, 121, 85, 72); // Warna coklat
+
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        backgroundColor: GlobalColors.button,
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   elevation: 0,
+      //   backgroundColor: GlobalColors.button,
+      // ),
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
@@ -55,7 +57,7 @@ class _HomepageState extends State<Homepage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Hello ${widget.userCredential.user!.displayName ?? ''}",
+                    "",
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 20,
@@ -124,26 +126,23 @@ class _HomepageState extends State<Homepage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: iconColor, // Ganti warna ikon yang terpilih
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            backgroundColor: Color.fromARGB(255, 121, 85, 72),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Search',
-            backgroundColor: Color.fromARGB(255, 121, 85, 72),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.coffee),
             label: 'Product',
-            backgroundColor: Color.fromARGB(255, 121, 85, 72),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
-            backgroundColor: Color.fromARGB(255, 121, 85, 72),
           ),
           // Add more BottomNavigationBarItems as needed
         ],

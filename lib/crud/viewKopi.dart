@@ -27,7 +27,7 @@ class _ViewKopiState extends State<ViewKopi> {
       ),
       body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: MyCollection.kopies.get()
-            as Future<QuerySnapshot<Map<String, dynamic>>>,
+            as Future<QuerySnapshot<Map<String, dynamic>>>?,
         builder: (_, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -39,16 +39,22 @@ class _ViewKopiState extends State<ViewKopi> {
             itemCount: kopies?.length ?? 0,
             itemBuilder: (_, index) {
               final kopi = kopies?[index];
-              final namaKopi =
-                  kopi?['nama_kopi'].toString(); // Konversi ke String
-              final jumlah = kopi?['jumlah'].toString(); // Konversi ke String
+              final namaKopi = kopi?.data()['nama_kopi']?.toString() ?? '';
+              final jumlah = kopi?.data()['jumlah']?.toString() ?? '';
+              final gambarPath = kopi?.data()['gambarURL']?.toString() ?? '';
 
               return Card(
                 elevation: 3,
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: ListTile(
+                  leading: Image.network(
+                    gambarPath, // Use the correct variable name here
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.cover,
+                  ),
                   title: Text(
-                    namaKopi!,
+                    namaKopi,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -64,20 +70,21 @@ class _ViewKopiState extends State<ViewKopi> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => EditPage(
-                                kopiId: kopiId,
-                                nama_kopi: namaKopi,
-                                jumlah: jumlah,
-                              )),
+                        builder: (_) => EditPage(
+                          kopiId: kopiId,
+                          nama_kopi: namaKopi,
+                          jumlah: jumlah,
+                          gambar: gambarPath,
+                          namaKopi: '',
+                        ),
+                      ),
                     ).then((_) {
                       setState(() {});
                     });
                   },
                   trailing: IconButton(
                     onPressed: () {
-                      // Mendapatkan ID kopi
                       final kopiId = kopi?.id;
-                      // Menghapus data kopi
                       _deleteKopi(kopiId);
                     },
                     icon: const Icon(Icons.delete),
@@ -94,9 +101,7 @@ class _ViewKopiState extends State<ViewKopi> {
 
   void _deleteKopi(String? kopiId) {
     if (kopiId != null) {
-      // Memanggil fungsi untuk menghapus data kopi dengan ID
       KopiService.delete(kopiId: kopiId).then((_) {
-        // Setelah data kopi dihapus, lakukan refresh tampilan
         setState(() {});
       });
     }

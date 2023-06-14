@@ -5,6 +5,8 @@ class GlobalColors {
   static HexColor splashscreen = HexColor('FEF8EB');
   static HexColor background = HexColor('FEFCF8');
   static HexColor button = HexColor('7C5D5C');
+  static HexColor black = HexColor('130F26');
+
   // static HexColor mainColor = HexColor('0A2647');
   // static HexColor textColor = HexColor('0A2647');
   // static HexColor buttonColor = HexColor('0A2647');

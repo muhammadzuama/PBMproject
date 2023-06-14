@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:server_coba/location/user.location.dart';
-import 'package:server_coba/main.dart';
 import 'package:server_coba/mitra/add.mitra.dart';
 import 'package:server_coba/mitra/edit.mitra.dart';
 import '../auth/mitra.service.dart';
-import '../map/map.dart';
 
 class ViewMitra extends StatefulWidget {
   const ViewMitra({Key? key}) : super(key: key);
@@ -65,8 +63,7 @@ class _ViewMitraState extends State<ViewMitra> {
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
-              String searchText = searchController.text;
-              // Do something with the inputted text
+              // String searchText = searchController.text;
             },
           ),
         ],
@@ -85,21 +82,11 @@ class _ViewMitraState extends State<ViewMitra> {
           ),
           const SizedBox(height: 16.0),
           FloatingActionButton(
-            child: const Icon(Icons.location_on),
+            child: const Icon(Icons.map),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const MyLocation()),
-              );
-            },
-          ),
-          const SizedBox(height: 16.0),
-          FloatingActionButton(
-            child: const Icon(Icons.maps_ugc_rounded),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const MyMaps()),
               );
             },
           ),

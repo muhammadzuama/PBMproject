@@ -13,13 +13,13 @@ class AddMitraAdmin extends StatefulWidget {
 
 class _AddMitraState extends State<AddMitraAdmin> {
   File? _image;
-  TextEditingController _namaController = TextEditingController();
-  TextEditingController _alamatController = TextEditingController();
-  TextEditingController _jamBukaController = TextEditingController();
-  TextEditingController _produkController = TextEditingController();
-  TextEditingController _deskripsiController = TextEditingController();
-  TextEditingController _lokasiController = TextEditingController();
-  TextEditingController _noHpController = TextEditingController();
+  final TextEditingController _namaController = TextEditingController();
+  final TextEditingController _alamatController = TextEditingController();
+  final TextEditingController _jamBukaController = TextEditingController();
+  final TextEditingController _produkController = TextEditingController();
+  final TextEditingController _deskripsiController = TextEditingController();
+  final TextEditingController _lokasiController = TextEditingController();
+  final TextEditingController _noHpController = TextEditingController();
 
   Future<void> _pickImage(ImageSource source) async {
     final pickedImage = await ImagePicker().pickImage(source: source);

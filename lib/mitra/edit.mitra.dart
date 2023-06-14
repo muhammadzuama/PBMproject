@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:server_coba/utils/global.color.dart';
 
 class EditMitra extends StatefulWidget {
   final String mitraId;
@@ -35,6 +36,7 @@ class EditMitra extends StatefulWidget {
 
 class _EditMitraState extends State<EditMitra> {
   late Stream<DocumentSnapshot> mitraStream;
+  MapController mapController = MapController();
 
   @override
   void initState() {
@@ -43,6 +45,14 @@ class _EditMitraState extends State<EditMitra> {
         .collection('mitra')
         .doc(widget.mitraId)
         .snapshots();
+  }
+
+  void zoomIn() {
+    mapController.move(mapController.center, mapController.zoom + 1);
+  }
+
+  void zoomOut() {
+    mapController.move(mapController.center, mapController.zoom - 1);
   }
 
   @override
@@ -142,8 +152,9 @@ class _EditMitraState extends State<EditMitra> {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: 300,
+                    height: 200,
                     child: FlutterMap(
+                      mapController: mapController, // Add MapController
                       options: MapOptions(
                         center: LatLng(
                           location.latitude,
@@ -160,16 +171,16 @@ class _EditMitraState extends State<EditMitra> {
                         MarkerLayerOptions(
                           markers: [
                             Marker(
-                              width: 40.0,
-                              height: 40.0,
+                              width: 100.0,
+                              height: 100.0,
                               point: LatLng(
                                 location.latitude,
                                 location.longitude,
                               ),
                               builder: (ctx) => Container(
                                 child: Icon(
-                                  Icons.location_pin,
-                                  color: Colors.red,
+                                  Icons.place,
+                                  color: GlobalColors.button,
                                 ),
                               ),
                             ),
@@ -177,6 +188,19 @@ class _EditMitraState extends State<EditMitra> {
                         ),
                       ],
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.zoom_in),
+                        onPressed: zoomIn,
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.zoom_out),
+                        onPressed: zoomOut,
+                      ),
+                    ],
                   ),
                 ],
               ),
