@@ -80,85 +80,87 @@ class _AddPageState extends State<AddPage> {
       appBar: AppBar(
         title: const Text("Add Kopi Page"),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              "Jenis Kopi",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                "Jenis Kopi",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              controller: _controllerNamaKopi,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Masukkan Jenis Kopi',
+              const SizedBox(height: 8),
+              TextField(
+                controller: _controllerNamaKopi,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Masukkan Jenis Kopi',
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              "Jumlah",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+              const SizedBox(height: 16),
+              Text(
+                "Jumlah",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              controller: _controllerJumlah,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Masukkan Jumlah',
+              const SizedBox(height: 8),
+              TextField(
+                controller: _controllerJumlah,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Masukkan Jumlah',
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton.icon(
-              onPressed: () => _pickImage(ImageSource.gallery),
-              style: ElevatedButton.styleFrom(
-                primary:
-                    Colors.brown, // Ubah warna latar belakang menjadi coklat
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+              const SizedBox(height: 16),
+              ElevatedButton.icon(
+                onPressed: () => _pickImage(ImageSource.gallery),
+                style: ElevatedButton.styleFrom(
+                  primary:
+                      Colors.brown, // Ubah warna latar belakang menjadi coklat
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                ),
+                icon: Icon(Icons.photo_library), // Tambahkan ikon dari galeri
+                label: const Text(
+                  'Pilih Gambar dari Galeri',
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
-              icon: Icon(Icons.photo_library), // Tambahkan ikon dari galeri
-              label: const Text(
-                'Pilih Gambar dari Galeri',
-                style: TextStyle(fontSize: 16),
+              const SizedBox(height: 8),
+              ElevatedButton.icon(
+                onPressed: () => _pickImage(ImageSource.camera),
+                style: ElevatedButton.styleFrom(
+                  primary:
+                      Colors.brown, // Ubah warna latar belakang menjadi coklat
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                ),
+                icon: Icon(Icons.camera_alt), // Tambahkan ikon dari kamera
+                label: const Text(
+                  'Ambil Gambar dari Kamera',
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            ElevatedButton.icon(
-              onPressed: () => _pickImage(ImageSource.camera),
-              style: ElevatedButton.styleFrom(
-                primary:
-                    Colors.brown, // Ubah warna latar belakang menjadi coklat
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+              const SizedBox(height: 16),
+              if (_pickedImage != null) Image.file(_pickedImage!),
+              ElevatedButton(
+                onPressed: _uploadData,
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                ),
+                child: const Text(
+                  'Tambah Data',
+                  style: TextStyle(fontSize: 18),
+                ),
               ),
-              icon: Icon(Icons.camera_alt), // Tambahkan ikon dari kamera
-              label: const Text(
-                'Ambil Gambar dari Kamera',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-            const SizedBox(height: 16),
-            if (_pickedImage != null) Image.file(_pickedImage!),
-            ElevatedButton(
-              onPressed: _uploadData,
-              style: ElevatedButton.styleFrom(
-                primary: Colors.green,
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-              ),
-              child: const Text(
-                'Tambah Data',
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

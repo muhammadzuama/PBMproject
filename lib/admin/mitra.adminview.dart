@@ -1,18 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:server_coba/location/user.location.dart';
+// import 'package:server_coba/location/user.location.dart';
 // import 'package:server_coba/mitra/add.mitra.dart';
 import 'package:server_coba/mitra/edit.mitra.dart';
 import '../auth/mitra.service.dart';
+import 'add.mitra.admin.dart';
 
-class ViewMitra extends StatefulWidget {
-  const ViewMitra({Key? key}) : super(key: key);
+class ViewMitraAdmin extends StatefulWidget {
+  const ViewMitraAdmin({Key? key}) : super(key: key);
 
   @override
-  State<ViewMitra> createState() => _ViewMitraState();
+  State<ViewMitraAdmin> createState() => _ViewMitraState();
 }
 
-class _ViewMitraState extends State<ViewMitra> {
+class _ViewMitraState extends State<ViewMitraAdmin> {
   TextEditingController searchController = TextEditingController();
   List<QueryDocumentSnapshot> mitraList = [];
 
@@ -51,6 +52,7 @@ class _ViewMitraState extends State<ViewMitra> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.brown,
         automaticallyImplyLeading: false,
         title: const Row(
           children: [
@@ -59,34 +61,16 @@ class _ViewMitraState extends State<ViewMitra> {
             Text('Daftar Mitra'),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              // String searchText = searchController.text;
-            },
-          ),
-        ],
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          // FloatingActionButton(
-          //   child: const Icon(Icons.add),
-          //   onPressed: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (_) => const AddMitra()),
-          //     );
-          //   },
-          // ),
-          const SizedBox(height: 16.0),
           FloatingActionButton(
-            child: const Icon(Icons.map),
+            child: const Icon(Icons.add),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => const MyLocation()),
+                MaterialPageRoute(builder: (_) => const AddMitraAdmin()),
               );
             },
           ),
@@ -190,37 +174,37 @@ class _ViewMitraState extends State<ViewMitra> {
                         ],
                       ),
                     ),
-                    // IconButton(
-                    //   icon: const Icon(Icons.delete),
-                    //   onPressed: () {
-                    //     showDialog(
-                    //       context: context,
-                    //       builder: (context) {
-                    //         return AlertDialog(
-                    //           title: const Text('Hapus Mitra'),
-                    //           content: const Text(
-                    //             'Apakah Anda yakin ingin menghapus mitra ini?',
-                    //           ),
-                    //           actions: [
-                    //             TextButton(
-                    //               child: const Text('Batal'),
-                    //               onPressed: () {
-                    //                 Navigator.pop(context);
-                    //               },
-                    //             ),
-                    //             TextButton(
-                    //               child: const Text('Hapus'),
-                    //               onPressed: () {
-                    //                 deleteMitra(mitraId);
-                    //                 Navigator.pop(context);
-                    //               },
-                    //             ),
-                    //           ],
-                    //         );
-                    //       },
-                    //     );
-                    //   },
-                    // ),
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Hapus Mitra'),
+                              content: const Text(
+                                'Apakah Anda yakin ingin menghapus mitra ini?',
+                              ),
+                              actions: [
+                                TextButton(
+                                  child: const Text('Batal'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                                TextButton(
+                                  child: const Text('Hapus'),
+                                  onPressed: () {
+                                    deleteMitra(mitraId);
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),

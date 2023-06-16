@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:server_coba/admin/mitra.adminview.dart';
 import 'package:server_coba/auth/auth.service.dart';
+// import 'package:server_coba/mitra/mitra.view.dart';
 import 'package:server_coba/utils/global.color.dart';
 import 'package:server_coba/view/daftar.view.dart';
 import 'package:server_coba/view/home.view.dart';
@@ -9,7 +11,7 @@ final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+  const LoginView({Key? key}) : super(key: key);
 
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -45,7 +47,7 @@ class _LoginViewState extends State<LoginView> {
                 height: 11,
               ),
               const Text(
-                "Selamat datang kembali Yuk login biar bisa akses fitur kita",
+                "Selamat datang kembali! Yuk login biar bisa akses fitur kita.",
                 style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               ),
@@ -57,7 +59,7 @@ class _LoginViewState extends State<LoginView> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Text(
-                    'Username ',
+                    'Username',
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
@@ -70,7 +72,7 @@ class _LoginViewState extends State<LoginView> {
                       controller: emailController,
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Masukkan Username ",
+                          hintText: "Masukkan Username",
                           hintStyle: TextStyle(
                               fontSize: 15,
                               color: const Color.fromARGB(255, 168, 168, 168)
@@ -133,11 +135,19 @@ class _LoginViewState extends State<LoginView> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 15),
-                        backgroundColor: GlobalColors.button),
-                    onPressed: () {
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 15),
+                    backgroundColor: GlobalColors.button,
+                  ),
+                  onPressed: () {
+                    if (emailController.text == 'admin' &&
+                        passwordController.text == 'admin123') {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => ViewMitraAdmin()),
+                      );
+                    } else {
                       FirebaseAuth.instance
                           .signInWithEmailAndPassword(
                               email: emailController.text,
@@ -147,8 +157,8 @@ class _LoginViewState extends State<LoginView> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) =>
-                                    Homepage(userCredential: value)),
+                              builder: (_) => Homepage(userCredential: value),
+                            ),
                           );
                         }
                       }).catchError((error) {
@@ -170,11 +180,12 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         );
                       });
-                      ;
-                    },
-                    child: const Text(
-                      "LOGIN",
-                    )),
+                    }
+                  },
+                  child: const Text(
+                    "LOGIN",
+                  ),
+                ),
               ),
               const SizedBox(height: 15),
               SizedBox(
@@ -187,8 +198,8 @@ class _LoginViewState extends State<LoginView> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
                           10), // Sesuaikan radius sesuai kebutuhan Anda
-                      side: BorderSide(
-                          color: GlobalColors.button,
+                      side: const BorderSide(
+                          color: Colors.brown,
                           width:
                               2), // Ganti dengan warna dan lebar stroke yang diinginkan
                     ),
@@ -199,7 +210,8 @@ class _LoginViewState extends State<LoginView> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => Homepage(userCredential: value)),
+                            builder: (_) => Homepage(userCredential: value),
+                          ),
                         );
                       }
                     });
@@ -219,17 +231,20 @@ class _LoginViewState extends State<LoginView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Belum punya akun ?"),
+                  const Text("Belum punya akun?"),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Register()),
+                          builder: (context) => const Register(),
+                        ),
                       );
                     },
-                    child: const Text("Sign Up",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               )

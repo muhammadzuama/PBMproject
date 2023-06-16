@@ -3,12 +3,14 @@ import 'package:server_coba/auth/kopi.services.dart';
 
 class EditPage extends StatefulWidget {
   final String? kopiId;
+  // ignore: non_constant_identifier_names
   final String? nama_kopi;
   final String? jumlah;
 
   const EditPage(
       {Key? key,
       this.kopiId,
+      // ignore: non_constant_identifier_names
       this.nama_kopi,
       this.jumlah,
       required String namaKopi,
@@ -46,6 +48,7 @@ class _EditPageState extends State<EditPage> {
         });
       }
     } catch (error) {
+      // ignore: avoid_print
       print('Error fetching data: $error');
     }
   }
@@ -68,7 +71,7 @@ class _EditPageState extends State<EditPage> {
             const SizedBox(height: 8),
             TextField(
               controller: _controllerNamaKopi,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Masukkan jenis kopi",
               ),

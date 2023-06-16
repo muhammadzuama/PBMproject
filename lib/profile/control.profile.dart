@@ -2,7 +2,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:server_coba/main.dart';
 import 'package:server_coba/utils/global.color.dart';
+import 'package:server_coba/view/login.view.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key});
@@ -14,11 +17,13 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   File? _image;
   late FirebaseAuth _firebaseAuth;
+  late GoogleSignIn _googleSignIn;
   User? _currentUser;
 
   @override
   void initState() {
     _firebaseAuth = FirebaseAuth.instance;
+    _googleSignIn = GoogleSignIn();
     _currentUser = _firebaseAuth.currentUser;
     super.initState();
   }
@@ -46,8 +51,11 @@ class _EditProfileState extends State<EditProfile> {
             color: Colors.white,
           ),
           onPressed: () {
-            var _googleAuth;
-            _googleAuth.logout();
+            _googleSignIn.signOut();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => LoginView()),
+            );
           },
         ),
       ),
