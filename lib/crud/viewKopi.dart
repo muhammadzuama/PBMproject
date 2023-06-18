@@ -17,6 +17,7 @@ class _ViewKopiState extends State<ViewKopi> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.brown,
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => AddPage()),

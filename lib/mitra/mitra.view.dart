@@ -51,6 +51,7 @@ class _ViewMitraState extends State<ViewMitra> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.brown,
         automaticallyImplyLeading: false,
         title: const Row(
           children: [
@@ -59,14 +60,14 @@ class _ViewMitraState extends State<ViewMitra> {
             Text('Daftar Mitra'),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              // String searchText = searchController.text;
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.search),
+        //     onPressed: () {
+        //       // String searchText = searchController.text;
+        //     },
+        //   ),
+        // ],
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -82,6 +83,7 @@ class _ViewMitraState extends State<ViewMitra> {
           // ),
           const SizedBox(height: 16.0),
           FloatingActionButton(
+            backgroundColor: Colors.brown,
             child: const Icon(Icons.map),
             onPressed: () {
               Navigator.push(

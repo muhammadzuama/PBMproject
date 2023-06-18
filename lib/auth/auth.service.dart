@@ -27,6 +27,7 @@ class GoogleAuth {
       await FirebaseAuth.instance.signOut();
       return true; // Sign-out successful
     } catch (e) {
+      // ignore: avoid_print
       print('Error during sign out: $e');
       return false; // Sign-out failed
     }

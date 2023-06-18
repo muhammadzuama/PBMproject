@@ -57,6 +57,7 @@ class _EditPageState extends State<EditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.brown,
         title: const Text("Edit Kopi Page"),
       ),
       body: Padding(

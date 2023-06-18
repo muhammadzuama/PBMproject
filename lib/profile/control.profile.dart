@@ -125,27 +125,27 @@ class _EditProfileState extends State<EditProfile> {
               buildTextField(
                   "Username", _currentUser?.displayName ?? "", false),
               buildTextField("Email", _currentUser?.email ?? "", false),
-              buildTextField("No HP", _currentUser?.phoneNumber ?? "",
-                  false), // Tambahkan fungsi ini sesuai kebutuhan
-              buildTextField("Password", "",
-                  true), // Tambahkan fungsi ini sesuai kebutuhan
+              // buildTextField("No HP", _currentUser?.phoneNumber ?? "",
+              //     false), // Tambahkan fungsi ini sesuai kebutuhan
+              // buildTextField("Password", "",
+              //     true), // Tambahkan fungsi ini sesuai kebutuhan
               const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 15),
-                    backgroundColor: GlobalColors.button,
-                  ),
-                  onPressed: () {
-                    // Tambahkan logika disini untuk menyimpan profil
-                  },
-                  child: const Text(
-                    "Save",
-                  ),
-                ),
-              ),
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: ElevatedButton(
+              //     style: ElevatedButton.styleFrom(
+              //       padding: const EdgeInsets.symmetric(
+              //           horizontal: 30, vertical: 15),
+              //       backgroundColor: GlobalColors.button,
+              //     ),
+              //     onPressed: () {
+              //       // Tambahkan logika disini untuk menyimpan profil
+              //     },
+              //     child: const Text(
+              //       "Save",
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

@@ -59,6 +59,7 @@ class _EditMitraState extends State<EditMitra> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.brown,
         title: const Text('Edit Mitra'),
       ),
       body: StreamBuilder<DocumentSnapshot>(

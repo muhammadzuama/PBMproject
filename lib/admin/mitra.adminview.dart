@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-// import 'package:server_coba/location/user.location.dart';
-// import 'package:server_coba/mitra/add.mitra.dart';
 import 'package:server_coba/mitra/edit.mitra.dart';
 import '../auth/mitra.service.dart';
 import 'add.mitra.admin.dart';
@@ -66,6 +64,7 @@ class _ViewMitraState extends State<ViewMitraAdmin> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            backgroundColor: Colors.brown,
             child: const Icon(Icons.add),
             onPressed: () {
               Navigator.push(
@@ -143,9 +142,14 @@ class _ViewMitraState extends State<ViewMitraAdmin> {
                             children: [
                               const Icon(Icons.location_on, size: 14.0),
                               const SizedBox(width: 2.0),
-                              Text(
-                                alamatMitra,
-                                style: const TextStyle(fontSize: 14.0),
+                              Expanded(
+                                child: Text(
+                                  alamatMitra,
+                                  style: const TextStyle(fontSize: 14.0),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines:
+                                      2, // Sesuaikan jumlah baris yang diinginkan
+                                ),
                               ),
                             ],
                           ),

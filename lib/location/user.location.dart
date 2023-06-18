@@ -47,6 +47,7 @@ class _MyLocationState extends State<MyLocation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.brown,
         title: Text("Lokasi Kamu"),
       ),
       body: Center(
@@ -84,7 +85,7 @@ class _MyLocationState extends State<MyLocation> {
                             builder: (ctx) => Container(
                               child: Icon(
                                 Icons.circle,
-                                color: Colors.blue,
+                                color: Colors.brown,
                               ),
                             ),
                           ),
@@ -99,11 +100,13 @@ class _MyLocationState extends State<MyLocation> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         FloatingActionButton(
+                          backgroundColor: Colors.brown,
                           onPressed: zoomIn,
                           child: Icon(Icons.add),
                         ),
                         SizedBox(height: 10),
                         FloatingActionButton(
+                          backgroundColor: Colors.brown,
                           onPressed: zoomOut,
                           child: Icon(Icons.remove),
                         ),

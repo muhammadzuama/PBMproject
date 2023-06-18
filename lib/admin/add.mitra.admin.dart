@@ -56,6 +56,7 @@ class _AddMitraState extends State<AddMitraAdmin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.brown,
         title: const Text('Add Mitra'),
       ),
       body: SingleChildScrollView(
@@ -68,6 +69,7 @@ class _AddMitraState extends State<AddMitraAdmin> {
                 controller: _namaController,
                 decoration: const InputDecoration(
                   labelText: 'Nama Mitra',
+                  prefixIcon: Icon(Icons.person),
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -75,6 +77,7 @@ class _AddMitraState extends State<AddMitraAdmin> {
                 controller: _alamatController,
                 decoration: const InputDecoration(
                   labelText: 'Alamat Mitra',
+                  prefixIcon: Icon(Icons.location_on),
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -82,6 +85,7 @@ class _AddMitraState extends State<AddMitraAdmin> {
                 controller: _jamBukaController,
                 decoration: const InputDecoration(
                   labelText: 'Jam Buka',
+                  prefixIcon: Icon(Icons.access_time),
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -89,6 +93,7 @@ class _AddMitraState extends State<AddMitraAdmin> {
                 controller: _produkController,
                 decoration: const InputDecoration(
                   labelText: 'Produk yang Dijual',
+                  prefixIcon: Icon(Icons.shopping_cart),
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -96,6 +101,7 @@ class _AddMitraState extends State<AddMitraAdmin> {
                 controller: _deskripsiController,
                 decoration: const InputDecoration(
                   labelText: 'Deskripsi',
+                  prefixIcon: Icon(Icons.description),
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -103,6 +109,7 @@ class _AddMitraState extends State<AddMitraAdmin> {
                 controller: _lokasiController,
                 decoration: const InputDecoration(
                   labelText: 'Lokasi (Latitude, Longitude)',
+                  prefixIcon: Icon(Icons.location_pin),
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -110,19 +117,24 @@ class _AddMitraState extends State<AddMitraAdmin> {
                 controller: _noHpController,
                 decoration: const InputDecoration(
                   labelText: 'Nomor Telepon',
+                  prefixIcon: Icon(Icons.phone),
                 ),
               ),
               const SizedBox(height: 16.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
+                  ElevatedButton.icon(
                     onPressed: () => _pickImage(ImageSource.camera),
-                    child: const Text('Ambil Foto'),
+                    icon: const Icon(Icons.camera_alt),
+                    label: const Text('Ambil Foto'),
+                    style: ElevatedButton.styleFrom(primary: Colors.brown),
                   ),
-                  ElevatedButton(
+                  ElevatedButton.icon(
                     onPressed: () => _pickImageFromGallery(),
-                    child: const Text('Ambil dari Galeri'),
+                    icon: const Icon(Icons.photo_library),
+                    label: const Text('Ambil dari Galeri'),
+                    style: ElevatedButton.styleFrom(primary: Colors.brown),
                   ),
                 ],
               ),
@@ -184,6 +196,7 @@ class _AddMitraState extends State<AddMitraAdmin> {
                   }
                 },
                 child: const Text('Simpan'),
+                style: ElevatedButton.styleFrom(primary: Colors.brown),
               ),
             ],
           ),

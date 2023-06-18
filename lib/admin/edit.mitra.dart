@@ -48,6 +48,7 @@ class _EditMitraState extends State<EditMitraAdmin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.brown,
         title: const Text('Edit Mitra'),
       ),
       body: StreamBuilder<DocumentSnapshot>(
@@ -73,16 +74,16 @@ class _EditMitraState extends State<EditMitraAdmin> {
           String alamat = mitraData['alamat'] ?? '';
           String product = mitraData['product'] ?? '';
           String jamBuka = mitraData['jam_buka'] ?? '';
-          GeoPoint location = mitraData['location'] ?? GeoPoint(0, 0);
+          GeoPoint location = mitraData['location'] ?? const GeoPoint(0, 0);
 
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Nama Toko:',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(namaToko),
                 const SizedBox(height: 8.0),
@@ -93,51 +94,55 @@ class _EditMitraState extends State<EditMitraAdmin> {
                   height: 200.0,
                 ),
                 const SizedBox(height: 8.0),
-                Text(
+                const Text(
                   'Deskripsi:',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(description),
                 const SizedBox(height: 8.0),
-                Text(
+                const Text(
                   'No. HP:',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Row(
                   children: [
+                    const Icon(Icons.phone),
+                    const SizedBox(width: 4.0),
                     Expanded(
                       child: Text(noHp),
                     ),
                   ],
                 ),
                 const SizedBox(height: 8.0),
-                Text(
+                const Text(
                   'Alamat:',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(alamat),
                 const SizedBox(height: 8.0),
-                Text(
+                const Text(
                   'Product:',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(product),
                 const SizedBox(height: 8.0),
-                Text(
+                const Text(
                   'Jam Buka:',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Row(
                   children: [
+                    const Icon(Icons.access_time),
+                    const SizedBox(width: 4.0),
                     Expanded(
                       child: Text(jamBuka),
                     ),
                   ],
                 ),
                 const SizedBox(height: 8.0),
-                Text(
+                const Text(
                   'Lokasi:',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text('Latitude: ${location.latitude}'),
                 Text('Longitude: ${location.longitude}'),
