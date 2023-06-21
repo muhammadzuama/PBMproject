@@ -70,7 +70,9 @@ class _ViewMitraState extends State<ViewMitraAdmin> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const AddMitraAdmin()),
-              );
+              ).then((_) {
+                setState(() {});
+              });
             },
           ),
         ],

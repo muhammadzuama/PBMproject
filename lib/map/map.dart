@@ -11,7 +11,7 @@ class MyMaps extends StatelessWidget {
       appBar: AppBar(
         title: const Text('OpenStreetMap Demo'),
       ),
-      body: OpenStreetMapWidget(),
+      body: const OpenStreetMapWidget(),
     );
   }
 }

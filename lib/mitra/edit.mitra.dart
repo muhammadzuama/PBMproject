@@ -1,8 +1,10 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:server_coba/utils/global.color.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class EditMitra extends StatefulWidget {
   final String mitraId;
@@ -60,7 +62,7 @@ class _EditMitraState extends State<EditMitra> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.brown,
-        title: const Text('Edit Mitra'),
+        title: const Text('Mitra'),
       ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: mitraStream,
@@ -85,7 +87,7 @@ class _EditMitraState extends State<EditMitra> {
           String alamat = mitraData['alamat'] ?? '';
           String product = mitraData['product'] ?? '';
           String jamBuka = mitraData['jam_buka'] ?? '';
-          GeoPoint location = mitraData['location'] ?? GeoPoint(0, 0);
+          GeoPoint location = mitraData['location'] ?? const GeoPoint(0, 0);
 
           return Padding(
             padding: const EdgeInsets.all(16.0),
@@ -93,9 +95,9 @@ class _EditMitraState extends State<EditMitra> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Nama Toko:',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(namaToko),
                   const SizedBox(height: 8.0),
@@ -106,56 +108,83 @@ class _EditMitraState extends State<EditMitra> {
                     height: 200.0,
                   ),
                   const SizedBox(height: 8.0),
-                  Text(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.brown,
+                        ),
+                        icon: const Icon(
+                          Icons.alarm,
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          jamBuka,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      ElevatedButton.icon(
+                        onPressed: () async {
+                          String modifiedNoHp = noHp;
+                          if (noHp.startsWith('0')) {
+                            modifiedNoHp = '62${noHp.substring(1)}';
+                          }
+
+                          // Validasi nomor telepon hanya terdiri dari angka
+                          if (modifiedNoHp.contains(RegExp(r'^[0-9]+$'))) {
+                            final url = 'https://wa.me/$modifiedNoHp';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          } else {
+                            throw 'Invalid phone number format';
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.brown,
+                        ),
+                        icon: const Icon(
+                          Icons.phone,
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          noHp,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8.0),
+                  const Text(
                     'Deskripsi:',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(description),
                   const SizedBox(height: 8.0),
-                  Text(
-                    'No. HP:',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(noHp),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8.0),
-                  Text(
+                  const Text(
                     'Alamat:',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(alamat),
                   const SizedBox(height: 8.0),
-                  Text(
+                  const Text(
                     'Product:',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(product),
                   const SizedBox(height: 8.0),
-                  Text(
-                    'Jam Buka:',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(jamBuka),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8.0),
-                  Text(
+                  const Text(
                     'Lokasi:',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 200,
                     child: FlutterMap(
-                      mapController: mapController, // Add MapController
+                      mapController: mapController,
                       options: MapOptions(
                         center: LatLng(
                           location.latitude,
@@ -178,11 +207,9 @@ class _EditMitraState extends State<EditMitra> {
                                 location.latitude,
                                 location.longitude,
                               ),
-                              builder: (ctx) => Container(
-                                child: Icon(
-                                  Icons.place,
-                                  color: GlobalColors.button,
-                                ),
+                              builder: (ctx) => const Icon(
+                                Icons.place,
+                                color: Colors.brown,
                               ),
                             ),
                           ],
@@ -194,11 +221,11 @@ class _EditMitraState extends State<EditMitra> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.zoom_in),
+                        icon: const Icon(Icons.zoom_in),
                         onPressed: zoomIn,
                       ),
                       IconButton(
-                        icon: Icon(Icons.zoom_out),
+                        icon: const Icon(Icons.zoom_out),
                         onPressed: zoomOut,
                       ),
                     ],

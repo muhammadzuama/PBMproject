@@ -3,6 +3,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class OpenStreetMapWidget extends StatelessWidget {
+  const OpenStreetMapWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return FlutterMap(

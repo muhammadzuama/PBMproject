@@ -16,16 +16,33 @@ class _ViewKopiState extends State<ViewKopi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      appBar: AppBar(
         backgroundColor: Colors.brown,
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => AddPage()),
-        ).then((_) {
-          setState(() {});
-        }),
-        child: const Icon(Icons.add),
+        title: const Text('View Kopi'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => AddPage()),
+              ).then((_) {
+                setState(() {});
+              });
+            },
+          ),
+        ],
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.brown,
+      //   onPressed: () => Navigator.push(
+      //     context,
+      //     MaterialPageRoute(builder: (_) => AddPage()),
+      //   ).then((_) {
+      //     setState(() {});
+      //   }),
+      //   child: const Icon(Icons.add),
+      // ),
       body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: MyCollection.kopies.get()
             as Future<QuerySnapshot<Map<String, dynamic>>>?,

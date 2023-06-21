@@ -12,8 +12,8 @@ class AddPage extends StatefulWidget {
 }
 
 class _AddPageState extends State<AddPage> {
-  TextEditingController _controllerNamaKopi = TextEditingController();
-  TextEditingController _controllerJumlah = TextEditingController();
+  final TextEditingController _controllerNamaKopi = TextEditingController();
+  final TextEditingController _controllerJumlah = TextEditingController();
   final ImagePicker _picker = ImagePicker();
   File? _pickedImage;
 
@@ -45,11 +45,31 @@ class _AddPageState extends State<AddPage> {
       return;
     }
 
-    try {
-      // Mengambil nilai dari text field
-      String namaKopi = _controllerNamaKopi.text;
-      String jumlah = _controllerJumlah.text;
+    String namaKopi = _controllerNamaKopi.text;
+    String jumlah = _controllerJumlah.text;
 
+    if (namaKopi.isEmpty || jumlah.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Data masih kosong"),
+            content: const Text("Harap lengkapi semua kolom data"),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
+    try {
       // Memanggil fungsi insert untuk menyimpan data ke server
       await KopiService.insert(
         nama_kopi: namaKopi,
@@ -79,6 +99,7 @@ class _AddPageState extends State<AddPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Kopi Page"),
+        backgroundColor: Colors.brown,
       ),
       body: SingleChildScrollView(
         child: Container(

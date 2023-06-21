@@ -29,7 +29,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.background,
+      // backgroundColor: GlobalColors.background,
       body: Center(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 32),
@@ -39,7 +39,7 @@ class _LoginViewState extends State<LoginView> {
               const Text(
                 "Selamat Datang",
                 style: TextStyle(
-                    color: Colors.black,
+                    // color: Colors.black,
                     fontSize: 30,
                     fontWeight: FontWeight.bold),
               ),
@@ -125,7 +125,7 @@ class _LoginViewState extends State<LoginView> {
                       "Forgot Password ?",
                       style: TextStyle(
                           fontSize: 12,
-                          color: Colors.black,
+                          // color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -145,7 +145,8 @@ class _LoginViewState extends State<LoginView> {
                         passwordController.text == 'admin123') {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => ViewMitraAdmin()),
+                        MaterialPageRoute(
+                            builder: (_) => const ViewMitraAdmin()),
                       );
                     } else {
                       FirebaseAuth.instance

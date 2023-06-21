@@ -53,6 +53,10 @@ dependencies:
   flutter_map: ^0.14.0
   latlong2: ^0.8.0
   cached_network_image: ^3.2.3
+  url_launcher: ^6.0.10
+  flutter_linkify: ^6.0.0
+  
+  # flutter_open_whatsapp: ^0.1.2
   # flutter_map_marker_cluster: ^1.2.0
 
 dev_dependencies:

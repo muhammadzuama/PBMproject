@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:server_coba/main.dart';
 import 'package:server_coba/utils/global.color.dart';
 import 'package:server_coba/view/login.view.dart';
 
@@ -165,7 +164,7 @@ class _EditProfileState extends State<EditProfile> {
             child: Text(
               labelText,
               style: const TextStyle(
-                color: Colors.grey,
+                // color: Colors.grey,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -174,7 +173,7 @@ class _EditProfileState extends State<EditProfile> {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.grey[200],
+              // color: Colors.grey[200],
             ),
             child: TextField(
               obscureText: isPasswordTextField,
