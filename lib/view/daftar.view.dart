@@ -138,9 +138,7 @@ class Register extends StatelessWidget {
                             if (value.user != null) {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (_) =>
-                                        Homepage(userCredential: value)),
+                                MaterialPageRoute(builder: (_) => Homepage()),
                               );
                             }
                           }).catchError((error) {

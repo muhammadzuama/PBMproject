@@ -86,13 +86,16 @@ class _EditPageState extends State<EditPage> {
             TextField(
               controller: _controllerJumlah,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Masukkan jumlah kopi",
               ),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.brown, // Set the background color to brown
+              ),
               onPressed: () {
                 if (widget.kopiId != null) {
                   _updateData();

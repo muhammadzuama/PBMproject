@@ -158,7 +158,7 @@ class _LoginViewState extends State<LoginView> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => Homepage(userCredential: value),
+                              builder: (_) => Homepage(),
                             ),
                           );
                         }
@@ -211,7 +211,8 @@ class _LoginViewState extends State<LoginView> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => Homepage(userCredential: value),
+                            builder: (_) => Homepage(),
+                            // builder: (_) => Homepage(userCredential: value)
                           ),
                         );
                       }

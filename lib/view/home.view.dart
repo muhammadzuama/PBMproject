@@ -9,8 +9,8 @@ import 'package:server_coba/utils/global.color.dart';
 import '../profile/control.profile.dart';
 
 class Homepage extends StatefulWidget {
-  final UserCredential userCredential;
-  const Homepage({Key? key, required this.userCredential}) : super(key: key);
+  late final UserCredential userCredential;
+  // const Homepage({Key? key, required this.userCredential}) : super(key: key);
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -43,7 +43,7 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     final Color iconColor = isDarkMode
         ? Colors.white
-        : Color.fromARGB(255, 121, 85, 72); // Warna ikon
+        : const Color.fromARGB(255, 121, 85, 72); // Warna ikon
 
     return MaterialApp(
       theme: isDarkMode ? ThemeData.dark() : ThemeData.light(),
@@ -118,9 +118,9 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             // Add more pages as needed
-            ViewMitra(), // Placeholder for Search page
+            const ViewMitra(), // Placeholder for Search page
             ViewKopi(), // Placeholder for Favorite page
-            EditProfile(), // Placeholder for Profile page
+            const EditProfile(), // Placeholder for Profile page
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

@@ -107,6 +107,7 @@ class _AddMitraState extends State<AddMitraAdmin> {
               const SizedBox(height: 16.0),
               TextField(
                 controller: _lokasiController,
+                keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   labelText: 'Lokasi (Latitude, Longitude)',
                   prefixIcon: Icon(Icons.location_pin),
@@ -134,7 +135,8 @@ class _AddMitraState extends State<AddMitraAdmin> {
                     onPressed: () => _pickImageFromGallery(),
                     icon: const Icon(Icons.photo_library),
                     label: const Text('Ambil dari Galeri'),
-                    style: ElevatedButton.styleFrom(primary: Colors.brown),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.brown),
                   ),
                 ],
               ),
@@ -164,39 +166,75 @@ class _AddMitraState extends State<AddMitraAdmin> {
                   if (_image != null) {
                     String imagePath = _image!.path;
                     List<String> lokasiSplit = lokasi.split(",");
-                    double latitude = double.parse(lokasiSplit[0]);
-                    double longitude = double.parse(lokasiSplit[1]);
 
-                    await MitraService.insert(
-                      nama_toko: namaMitra,
-                      description: deskripsi,
-                      no_hp: noHp,
-                      alamat: alamatMitra,
-                      gambarPath: imagePath,
-                      product: produk,
-                      jam_buka: jamBuka,
-                      location: GeoPoint(latitude, longitude),
-                    );
+                    try {
+                      double latitude = double.parse(lokasiSplit[0]);
+                      double longitude = double.parse(lokasiSplit[1]);
 
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Data berhasil ditambahkan"),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                    Navigator.pop(context);
+                      await MitraService.insert(
+                        nama_toko: namaMitra,
+                        description: deskripsi,
+                        no_hp: noHp,
+                        alamat: alamatMitra,
+                        gambarPath: imagePath,
+                        product: produk,
+                        jam_buka: jamBuka,
+                        location: GeoPoint(latitude, longitude),
+                      );
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Data berhasil ditambahkan"),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                      Navigator.pop(context);
+                    } catch (e) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Error'),
+                            content: const Text(
+                                'Latitude dan Longitude harus berupa angka'),
+                            actions: <Widget>[
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('OK'),
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.red),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
                   } else {
-                    // Handling jika gambar belum dipilih
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Pilih gambar terlebih dahulu"),
-                        backgroundColor: Colors.red,
-                      ),
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Error'),
+                          content: const Text('Pilih gambar terlebih dahulu'),
+                          actions: <Widget>[
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('OK'),
+                              style:
+                                  ElevatedButton.styleFrom(primary: Colors.red),
+                            ),
+                          ],
+                        );
+                      },
                     );
                   }
                 },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.brown),
                 child: const Text('Simpan'),
-                style: ElevatedButton.styleFrom(primary: Colors.brown),
               ),
             ],
           ),

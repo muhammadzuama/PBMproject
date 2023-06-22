@@ -16,9 +16,9 @@ class _DetailArtikelState extends State<DetailArtikel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.brown,
         elevation: 0.0,
-        iconTheme: const IconThemeData(color: Colors.brown),
+        // iconTheme: const IconThemeData(color: Colors.w),
       ),
       body: SingleChildScrollView(
         child: Padding(

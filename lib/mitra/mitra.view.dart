@@ -60,31 +60,23 @@ class _ViewMitraState extends State<ViewMitra> {
             Text('Daftar Mitra'),
           ],
         ),
-        // actions: [
-        //   IconButton(
-        //     icon: const Icon(Icons.search),
-        //     onPressed: () {
-        //       // String searchText = searchController.text;
-        //     },
-        //   ),
-        // ],
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          // FloatingActionButton(
-          //   child: const Icon(Icons.add),
-          //   onPressed: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (_) => const AddMitra()),
-          //     );
-          //   },
-          // ),
+          FloatingActionButton(
+            backgroundColor: Colors.brown,
+            child: const Icon(Icons.map_outlined),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const MyLocation()),
+              );
+            },
+          ),
           const SizedBox(height: 16.0),
           FloatingActionButton(
             backgroundColor: Colors.brown,
-            child: const Icon(Icons.map),
             onPressed: () {
               Navigator.push(
                 context,
@@ -192,37 +184,6 @@ class _ViewMitraState extends State<ViewMitra> {
                         ],
                       ),
                     ),
-                    // IconButton(
-                    //   icon: const Icon(Icons.delete),
-                    //   onPressed: () {
-                    //     showDialog(
-                    //       context: context,
-                    //       builder: (context) {
-                    //         return AlertDialog(
-                    //           title: const Text('Hapus Mitra'),
-                    //           content: const Text(
-                    //             'Apakah Anda yakin ingin menghapus mitra ini?',
-                    //           ),
-                    //           actions: [
-                    //             TextButton(
-                    //               child: const Text('Batal'),
-                    //               onPressed: () {
-                    //                 Navigator.pop(context);
-                    //               },
-                    //             ),
-                    //             TextButton(
-                    //               child: const Text('Hapus'),
-                    //               onPressed: () {
-                    //                 deleteMitra(mitraId);
-                    //                 Navigator.pop(context);
-                    //               },
-                    //             ),
-                    //           ],
-                    //         );
-                    //       },
-                    //     );
-                    //   },
-                    // ),
                   ],
                 ),
               ),
