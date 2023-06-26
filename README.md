@@ -10,6 +10,7 @@ Findfe is an android-based application that aims to help cafes find the right in
 2. Update Stock Barang
 3. Terintegrasi Dengan Maps
 4. Terintegrasi Dengan Google
+5. Fitur Article
 
 ## User Inteface
 ![alt text](https://github.com/muhammadzuama/PBMproject/blob/main/images/ui.png)?raw=true)
