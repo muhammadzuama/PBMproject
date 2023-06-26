@@ -12,10 +12,7 @@ Findfe is an android-based application that aims to help cafes find the right in
 4. Terintegrasi Dengan Google
 
 ## User Inteface
-1. Search Mitra
-2. Update Stock Barang
-3. Terintegrasi Dengan Maps
-4. Terintegrasi Dengan Google
+
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
