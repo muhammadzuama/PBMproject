@@ -134,7 +134,7 @@ class _EditMitraState extends State<EditMitra> {
 
                           // Validasi nomor telepon hanya terdiri dari angka
                           if (modifiedNoHp.contains(RegExp(r'^[0-9]+$'))) {
-                            final url = 'https://wa.me/$modifiedNoHp';
+                            String url = 'https://wa.me/+$modifiedNoHp';
                             if (await canLaunch(url)) {
                               await launch(url);
                             } else {

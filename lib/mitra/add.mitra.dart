@@ -166,12 +166,14 @@ class _AddMitraState extends State<AddMitra> {
                       location: GeoPoint(latitude, longitude),
                     );
 
+                    // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text("Data berhasil ditambahkan"),
                         backgroundColor: Colors.green,
                       ),
                     );
+                    // ignore: use_build_context_synchronously
                     Navigator.pop(context);
                   } else {
                     // Handling jika gambar belum dipilih

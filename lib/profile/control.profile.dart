@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:server_coba/ontab/Aboutme.view.dart';
 import 'package:server_coba/utils/global.color.dart';
 import 'package:server_coba/view/login.view.dart';
 
@@ -129,22 +130,25 @@ class _EditProfileState extends State<EditProfile> {
               // buildTextField("Password", "",
               //     true), // Tambahkan fungsi ini sesuai kebutuhan
               const SizedBox(height: 20),
-              // SizedBox(
-              //   width: double.infinity,
-              //   child: ElevatedButton(
-              //     style: ElevatedButton.styleFrom(
-              //       padding: const EdgeInsets.symmetric(
-              //           horizontal: 30, vertical: 15),
-              //       backgroundColor: GlobalColors.button,
-              //     ),
-              //     onPressed: () {
-              //       // Tambahkan logika disini untuk menyimpan profil
-              //     },
-              //     child: const Text(
-              //       "Save",
-              //     ),
-              //   ),
-              // ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 15),
+                    backgroundColor: GlobalColors.button,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => AboutMe()),
+                    );
+                  },
+                  child: const Text(
+                    "Tentang Kami",
+                  ),
+                ),
+              ),
             ],
           ),
         ),
