@@ -13,7 +13,7 @@ Findfe is an android-based application that aims to help cafes find the right in
 5. Fitur Article
 
 ## User Inteface
-![alt text](https://github.com/muhammadzuama/PBMproject/blob/main/images/ui.png)?raw=true)
+![alt text](https://github.com/muhammadzuama/PBMproject/blob/main/images/ui.png)?)
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
