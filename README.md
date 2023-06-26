@@ -1,12 +1,18 @@
-# server_coba
+# Findfe Apps
 
-A new Flutter project.
+Findfe is an android-based application that aims to help cafes find the right ingredients and coffee partners, quickly and effectively. This application is here to solve the problems of our two partners, namely Ozi cafe and Coffee Production House in Balurejo, Banyuwangi Regency.
 
-## Getting Started
+## Features
+1. Search Mitra
+2. Update Stock Barang
+3. Terintegrasi Dengan Maps
+4. Terintegrasi Dengan Google
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
+## User Inteface
+1. Search Mitra
+2. Update Stock Barang
+3. Terintegrasi Dengan Maps
+4. Terintegrasi Dengan Google
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
